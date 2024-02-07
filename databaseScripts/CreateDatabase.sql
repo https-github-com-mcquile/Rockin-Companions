@@ -91,7 +91,7 @@ CREATE TABLE [dbo].[Orders](
 	[CustomerID] [int] NOT NULL,
 	[EmployeeID] [int] NOT NULL,
 	[OrderStatusID] [int] NOT NULL,
-	[Date] [date]  NOT NULL,
+	[PlacedDate] [datetime]  NOT NULL,
 	CONSTRAINT [PK_Orders] PRIMARY KEY CLUSTERED 
 	(
 		[OrderID] ASC
