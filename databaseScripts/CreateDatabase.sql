@@ -120,19 +120,6 @@ GO
 ALTER TABLE [dbo].[Orders] CHECK CONSTRAINT [FK_Orders_OrderStatus]
 GO
 
-CREATE TABLE [dbo].[Inventory](
-	[InventoryID] [int] IDENTITY(1,1) NOT NULL,
-	[Title] [varchar] (20) NULL,
-	[Description] [varchar] (120) NULL,
-	[price] [smallmoney]  NOT NULL,
-	[ActiveTimestamp] [datetime] NOT NULL, 
-
-	CONSTRAINT [PK_Inventory] PRIMARY KEY CLUSTERED 
-	(
-		[InventoryID] ASC
-	)
-);
-GO
 
 CREATE TABLE [dbo].[InventoryType](
 	[InventoryTypeID] [int] IDENTITY(1,1) NOT NULL,
@@ -144,12 +131,32 @@ CREATE TABLE [dbo].[InventoryType](
 	)
 );
 GO
+CREATE TABLE [dbo].[Inventory](
+	[InventoryID] [int] IDENTITY(1,1) NOT NULL,
+	[InventoryTypeID] [int] NOT NULL,
+	[Title] [varchar] (20) NULL,
+	[Description] [varchar] (120) NULL,
+	[Price] [smallmoney]  NOT NULL,
+	[ActiveTimestamp] [datetime] NOT NULL, 
 
+	CONSTRAINT [PK_Inventory] PRIMARY KEY CLUSTERED 
+	(
+		[InventoryID] ASC
+	)
+);
+GO
+
+ALTER TABLE [dbo].[Inventory]  WITH CHECK ADD CONSTRAINT [FK_Inventory_InventoryType] FOREIGN KEY([InventoryTypeID])
+REFERENCES [dbo].[InventoryType] ([InventoryTypeID])
+GO
+
+ALTER TABLE [dbo].[Inventory] CHECK CONSTRAINT [FK_Inventory_InventoryType]
+GO
  
 CREATE TABLE [dbo].[OrderLines](
 	[OrderLinesID] [int] IDENTITY(1,1) NOT NULL,
 	[OrderID] [int] NOT NULL,
-	[OrderStatus] [char] (10) NOT NULL, 
+	[OrderStatusID] [int] NOT NULL, 
 	CONSTRAINT [PK_OrderLines] PRIMARY KEY CLUSTERED 
 	(
 		[OrderLinesID] ASC
@@ -163,4 +170,11 @@ REFERENCES [dbo].[Orders] ([OrderID])
 GO
 
 ALTER TABLE [dbo].[OrderLines] CHECK CONSTRAINT [FK_OrderLines_Orders]
+GO
+
+ALTER TABLE [dbo].[OrderLines]  WITH CHECK ADD CONSTRAINT [FK_OrderLines_OrderStatus] FOREIGN KEY([OrderStatusID])
+REFERENCES [dbo].[OrderStatus] ([OrderStatusID])
+GO
+
+ALTER TABLE [dbo].[OrderLines] CHECK CONSTRAINT [FK_OrderLines_OrderStatus]
 GO
