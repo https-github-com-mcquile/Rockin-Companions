@@ -119,6 +119,10 @@ GO
 ALTER TABLE [dbo].[Orders] CHECK CONSTRAINT [FK_Orders_OrderStatus]
 GO
 
+ALTER TABLE [dbo].[Orders]
+ADD CONSTRAINT DF_Orders_PlacedDate
+DEFAULT GETDATE() FOR PlacedDate;
+
 CREATE TABLE [dbo].[InventoryType](
 	[InventoryTypeID] [int] IDENTITY(1,1) NOT NULL,
 	[Description] [varchar] (120) NULL,
