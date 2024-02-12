@@ -178,3 +178,14 @@ GO
 
 ALTER TABLE [dbo].[OrderLines] CHECK CONSTRAINT [FK_OrderLines_OrderStatus]
 GO
+
+CREATE TABLE [dbo].[VAT](
+	[VATID] [int] IDENTITY(1,1) NOT NULL,
+	[Value] [float] NOT NULL,
+	[ActiveTimestamp] [datetime] NOT NULL, 
+	CONSTRAINT [PK_VAT] PRIMARY KEY CLUSTERED 
+	(
+		[VATID] ASC
+	)
+);
+GO
