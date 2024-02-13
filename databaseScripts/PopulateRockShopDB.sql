@@ -2,26 +2,26 @@ USE RockShopDB
 
 INSERT INTO [dbo].[Addresses] ([AddressName], [Location])
 VALUES 
-    ('Home', geography::Point(47.1234, -122.3456, 4326)),
-    ('Work', geography::Point(47.5678, -122.7890, 4326)),
-    ('Work', geography::Point(47.9012, -122.1234, 4326)),
-    ('Work', NULL),
-    ('House', geography::Point(47.3456, -122.6789, 4326)),
-    ('Work', geography::Point(47.8901, -122.5678, 4326)),
-    ('Home', geography::Point(47.2345, -122.4567, 4326)),
-    ('Home', NULL),
-    ('House', geography::Point(47.6789, -122.9012, 4326)),
-    ('Work', geography::Point(47.5432, -122.7890, 4326)),
-    ('House', geography::Point(47.0123, -122.6789, 4326)),
-    ('Work', geography::Point(47.9012, -122.5678, 4326)),
-    ('House', geography::Point(47.7890, -122.4567, 4326)),
-    ('Home', geography::Point(47.3456, -122.3456, 4326)),
-    ('Home', geography::Point(47.6789, -122.2345, 4326)),
-    ('Home', geography::Point(47.9012, -122.1234, 4326)),
-    ('Home', geography::Point(47.1234, -122.0123, 4326)),
-    ('Work', geography::Point(47.4567, -122.9012, 4326)),
-    ('Work', geography::Point(47.7890, -122.7890, 4326)),
-    ('Home', geography::Point(47.2345, -122.6789, 4326));
+    ('123 Main St', geography::Point(47.1234, -122.3456, 4326)),
+    ('456 Elm St', geography::Point(47.5678, -122.7890, 4326)),
+    ('789 Oak St', geography::Point(47.9012, -122.1234, 4326)),
+    ('10 Maple Ave', NULL),
+    ('20 Pine St', geography::Point(47.3456, -122.6789, 4326)),
+    ('30 Cedar Rd', geography::Point(47.8901, -122.5678, 4326)),
+    ('40 Birch Ln', geography::Point(47.2345, -122.4567, 4326)),
+    ('50 Walnut Blvd', NULL),
+    ('60 Cherry St', geography::Point(47.6789, -122.9012, 4326)),
+    ('70 Chestnut Dr', geography::Point(47.5432, -122.7890, 4326)),
+    ('80 Poplar Ave', geography::Point(47.0123, -122.6789, 4326)),
+    ('90 Sycamore Rd', geography::Point(47.9012, -122.5678, 4326)),
+    ('100 Hemlock Ln', geography::Point(47.7890, -122.4567, 4326)),
+    ('110 Willow Blvd', geography::Point(47.3456, -122.3456, 4326)),
+    ('120 Fir St', geography::Point(47.6789, -122.2345, 4326)),
+    ('130 Spruce Ave', geography::Point(47.9012, -122.1234, 4326)),
+    ('140 Cedar Rd', geography::Point(47.1234, -122.0123, 4326)),
+    ('150 Pine St', geography::Point(47.4567, -122.9012, 4326)),
+    ('160 Maple Ln', geography::Point(47.7890, -122.7890, 4326)),
+    ('170 Elm Blvd', geography::Point(47.2345, -122.6789, 4326));
 GO
 
 INSERT INTO [dbo].[InventoryType] ([Description])
@@ -38,7 +38,7 @@ VALUES
     ('Hair'),
     ('Cape'),
     ('Misc'),
-    ('Mouth'),
+	('Mouth'),
     ('Paint');
 GO
 
@@ -76,26 +76,26 @@ GO
 
 INSERT INTO [dbo].[CustomersAddresses] ([AddressID], [CustomerID], [PersonalisedHomeAddress])
 VALUES 
-    (6, 4, 'Personalized Home Address 1'),
-	(15, 9, 'Personalized Home Address 2'),
-	(5, 17, 'Personalized Home Address 3'),
-	(12, 3, 'Personalized Home Address 4'),
-	(9, 9, 'Personalized Home Address 5'),
-	(3, 16, 'Personalized Home Address 6'),
-	(8, 6, 'Personalized Home Address 7'),
-	(19, 17, 'Personalized Home Address 8'),
-	(20, 15, 'Personalized Home Address 9'),
-	(19, 10, 'Personalized Home Address 10'),
-	(8, 6, 'Personalized Home Address 11'),
-	(3, 11, 'Personalized Home Address 12'),
-	(3, 1, 'Personalized Home Address 13'),
-	(12, 17, 'Personalized Home Address 14'),
-	(8, 12, 'Personalized Home Address 15'),
-	(17, 5, 'Personalized Home Address 16'),
-	(18, 6, 'Personalized Home Address 17'),
-	(1, 7, 'Personalized Home Address 18'),
-	(1, 13, 'Personalized Home Address 19'),
-	(6, 13, 'Personalized Home Address 20');
+    (6, 4, 'Home'),
+	(15, 9, 'Work'),
+	(5, 17, 'Work'),
+	(12, 3, 'Work'),
+	(9, 9, 'House'),
+	(3, 16, 'Work'),
+	(8, 6, 'Home'),
+	(19, 17, 'Home'),
+	(20, 15, 'House'),
+	(19, 10, 'Work'),
+	(8, 6, 'House'),
+	(3, 11, 'Work'),
+	(3, 1, 'House'),
+	(12, 17, 'Home'),
+	(8, 12, 'Home'),
+	(17, 5, 'Home'),
+	(18, 6, 'Home'),
+	(1, 7, 'Work'),
+	(1, 13, 'Work'),
+	(6, 13, 'Home');
 GO
 
 INSERT INTO [dbo].[Employees] ([Email], [CellNumber], [IdentityNumber], [TimeOfRegistration])
@@ -145,7 +145,7 @@ VALUES
 	(15, 8, 3, GETDATE()),
 	(7, 4, 3, GETDATE());
 Go
-select * from InventoryType
+
 INSERT INTO [dbo].[Inventory] ([InventoryTypeID], [Title], [Description], [price], [ActiveTimestamp])
 VALUES 
     (1, 'Dwayn Rock', 'Dwayne "the petrock" Johnson.', 771.89, GETDATE()),
@@ -192,3 +192,10 @@ VALUES
     (18, 2),
     (19, 3),
     (20, 4);
+
+INSERT INTO VAT ([Value], ActiveTimestamp)
+VALUES 
+	(0.14, '2014-05-14 00:00:00.000'),
+	(0.15, '2018-02-18 12:00:00.000'),
+	(0.01, '2024-02-12 22:41:54.490');
+GO
