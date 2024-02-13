@@ -8,7 +8,6 @@ GO
 USE RockShopDB;
 GO
 
-
 CREATE TABLE [dbo].[Addresses](
 	[AddressID] [int] IDENTITY(1,1) NOT NULL,
 	[AddressName] [varchar] (120),
@@ -19,7 +18,6 @@ CREATE TABLE [dbo].[Addresses](
 	)
 );
 GO
-
 
 CREATE TABLE [dbo].[Customers](
 	[CustomerID] [int] IDENTITY(1,1) NOT NULL,
@@ -34,7 +32,6 @@ CREATE TABLE [dbo].[Customers](
 );
 GO
 
-
 CREATE TABLE [dbo].[CustomersAddresses](
 	[CustomersAddressesID] [int] IDENTITY(1,1) NOT NULL,
 	[AddressID] [int] NOT NULL,
@@ -46,7 +43,6 @@ CREATE TABLE [dbo].[CustomersAddresses](
 	),
 );
 GO
-
 
 ALTER TABLE [dbo].[CustomersAddresses]  WITH CHECK ADD CONSTRAINT [FK_CustomersAddresses_Addresses] FOREIGN KEY([AddressID])
 REFERENCES [dbo].[Addresses] ([AddressID])
@@ -62,7 +58,6 @@ GO
 ALTER TABLE [dbo].[CustomersAddresses] CHECK CONSTRAINT [FK_CustomerAddresses_Customers]
 GO
 
-
 CREATE TABLE [dbo].[Employees](
 	[EmployeeID] [int] IDENTITY(1,1) NOT NULL,
 	[Email] [varchar](255) NULL,
@@ -75,6 +70,10 @@ CREATE TABLE [dbo].[Employees](
 	)
 );
 GO
+
+ALTER TABLE [dbo].[Employees]
+ADD CONSTRAINT DF_Employees_TimeOfRegistration
+DEFAULT GETDATE() FOR TimeOfRegistration;
 
 CREATE TABLE [dbo].[OrderStatus](
 	[OrderStatusID] [int] IDENTITY(1,1) NOT NULL,
@@ -120,6 +119,9 @@ GO
 ALTER TABLE [dbo].[Orders] CHECK CONSTRAINT [FK_Orders_OrderStatus]
 GO
 
+ALTER TABLE [dbo].[Orders]
+ADD CONSTRAINT DF_Orders_PlacedDate
+DEFAULT GETDATE() FOR PlacedDate;
 
 CREATE TABLE [dbo].[InventoryType](
 	[InventoryTypeID] [int] IDENTITY(1,1) NOT NULL,
@@ -131,6 +133,7 @@ CREATE TABLE [dbo].[InventoryType](
 	)
 );
 GO
+
 CREATE TABLE [dbo].[Inventory](
 	[InventoryID] [int] IDENTITY(1,1) NOT NULL,
 	[InventoryTypeID] [int] NOT NULL,
@@ -152,7 +155,11 @@ GO
 
 ALTER TABLE [dbo].[Inventory] CHECK CONSTRAINT [FK_Inventory_InventoryType]
 GO
- 
+
+ALTER TABLE [dbo].[Inventory]
+ADD CONSTRAINT DF_Inventory_ActiveTimestamp
+DEFAULT GETDATE() FOR ActiveTimestamp;
+
 CREATE TABLE [dbo].[OrderLines](
 	[OrderLinesID] [int] IDENTITY(1,1) NOT NULL,
 	[OrderID] [int] NOT NULL,
@@ -163,7 +170,6 @@ CREATE TABLE [dbo].[OrderLines](
 	)
 );
 GO
-
 
 ALTER TABLE [dbo].[OrderLines]  WITH CHECK ADD CONSTRAINT [FK_OrderLines_Orders] FOREIGN KEY([OrderID])
 REFERENCES [dbo].[Orders] ([OrderID])
@@ -189,3 +195,7 @@ CREATE TABLE [dbo].[VAT](
 	)
 );
 GO
+
+ALTER TABLE [dbo].[VAT]
+ADD CONSTRAINT DF_VAT_ActiveTimestamp
+DEFAULT GETDATE() FOR ActiveTimestamp;
