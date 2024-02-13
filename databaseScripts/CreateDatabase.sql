@@ -141,7 +141,7 @@ CREATE TABLE [dbo].[Inventory](
 	[Description] [varchar] (120) NULL,
 	[Price] [smallmoney]  NOT NULL,
 	[ActiveTimestamp] [datetime] NOT NULL, 
-
+	[QuantityOnHand] [int] NOT NULL,
 	CONSTRAINT [PK_Inventory] PRIMARY KEY CLUSTERED 
 	(
 		[InventoryID] ASC
@@ -162,8 +162,9 @@ DEFAULT GETDATE() FOR ActiveTimestamp;
 
 CREATE TABLE [dbo].[OrderLines](
 	[OrderLinesID] [int] IDENTITY(1,1) NOT NULL,
+	[InventoryID] [int] NOT NULL,
 	[OrderID] [int] NOT NULL,
-	[OrderStatusID] [int] NOT NULL, 
+	[Quantity] [int] NOT NULL, 
 	CONSTRAINT [PK_OrderLines] PRIMARY KEY CLUSTERED 
 	(
 		[OrderLinesID] ASC
@@ -178,11 +179,11 @@ GO
 ALTER TABLE [dbo].[OrderLines] CHECK CONSTRAINT [FK_OrderLines_Orders]
 GO
 
-ALTER TABLE [dbo].[OrderLines]  WITH CHECK ADD CONSTRAINT [FK_OrderLines_OrderStatus] FOREIGN KEY([OrderStatusID])
-REFERENCES [dbo].[OrderStatus] ([OrderStatusID])
+ALTER TABLE [dbo].[OrderLines]  WITH CHECK ADD CONSTRAINT [FK_OrderLines_Inventory] FOREIGN KEY([InventoryID])
+REFERENCES [dbo].[Inventory] ([InventoryID])
 GO
 
-ALTER TABLE [dbo].[OrderLines] CHECK CONSTRAINT [FK_OrderLines_OrderStatus]
+ALTER TABLE [dbo].[OrderLines] CHECK CONSTRAINT [FK_OrderLines_Inventory]
 GO
 
 CREATE TABLE [dbo].[VAT](
