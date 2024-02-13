@@ -146,52 +146,52 @@ VALUES
 	(7, 4, 3, GETDATE());
 Go
 
-INSERT INTO [dbo].[Inventory] ([InventoryTypeID], [Title], [Description], [price], [ActiveTimestamp])
+INSERT INTO [dbo].[Inventory] ([InventoryTypeID], [Title], [Description], [price], [ActiveTimestamp], [QuantityOnHand])
 VALUES 
-    (1, 'Dwayn Rock', 'Dwayne "the petrock" Johnson.', 771.89, GETDATE()),
-	(1, 'Zebra Rock', 'Black and white striped rock.', 108.92, GETDATE()),
-	(1, 'Giraffe Rock', 'Rock with long neck.', 578.76, GETDATE()),
-	(2, 'Glass eyes', 'Glass beads in selected colours.', 315.55, GETDATE()),
-	(2, 'Googly eyes', 'Description for Item 5', 633.04, GETDATE()),
-	(3, 'Angry Brow', 'Angry shaped eyebrows.', 171.68, GETDATE()),
-	(3, 'Happy Brow', 'Happy shaped eyebrows.', 635.74, GETDATE()),
-	(3, 'Sad Brow', 'Sad shaped eyebrows.', 859.27, GETDATE()),
-	(3, 'Skeptical Brow', 'Sus shaped eyebrows.', 119.26, GETDATE()),
-	(4, 'Handelbar mustache', 'A distinctive mustache with long and upward-curled ends, resembling the handlebars of a bicycle.', 622.12, GETDATE()),
-	(4, 'Horseshoe mustache', 'A mustache that resembles an upside-down "U" shape, extending downward from the corners of the mouth.', 670.17, GETDATE()),
-	(5, 'Tophat', 'A tall, cylindrical hat with a flat crown and a narrow brim.', 523.81, GETDATE()),
-	(5, 'Cowboy Hat', 'A wide-brimmed hat with a tall, creased crown.', 727.47, GETDATE()),
-	(5, 'Newsboy Cap', 'A flat cap with a round, paneled crown and a small, stiff brim that curves slightly at the front.', 739.94, GETDATE()),
-	(6, 'Leash', 'Leash for walking your rock in selected colours.', 696.27, GETDATE()),
-	(7, 'Wellington boots', 'Footwear for outdoor activities such as gardening, farming, hiking, and festivals.', 286.38, GETDATE()),
-	(9, 'Sneakers', 'Footwear designed primarily for sports and physical activities but widely used for everyday casual wear', 653.84, GETDATE()),
-	(9, 'Ears', 'Ears available in several sizes and colours.', 632.83, GETDATE()),
-	(9, 'Fancy gloves', 'Gloves for your trip to England.', 261.37, GETDATE()),
-	(9, 'Rock Markers', 'For drawing on your pet rock to customize to your liking.', 837.69, GETDATE());
+    (1, 'Dwayn Rock', 'Dwayne "the petrock" Johnson.', 771.89, GETDATE(), 5),
+	(1, 'Zebra Rock', 'Black and white striped rock.', 108.92, GETDATE(), 5),
+	(1, 'Giraffe Rock', 'Rock with long neck.', 578.76, GETDATE(), 5),
+	(2, 'Glass eyes', 'Glass beads in selected colours.', 315.55, GETDATE(), 5),
+	(2, 'Googly eyes', 'Description for Item 5', 633.04, GETDATE(), 5),
+	(3, 'Angry Brow', 'Angry shaped eyebrows.', 171.68, GETDATE(), 5),
+	(3, 'Happy Brow', 'Happy shaped eyebrows.', 635.74, GETDATE(), 5),
+	(3, 'Sad Brow', 'Sad shaped eyebrows.', 859.27, GETDATE(), 5),
+	(3, 'Skeptical Brow', 'Sus shaped eyebrows.', 119.26, GETDATE(), 5),
+	(4, 'Handelbar mustache', 'A distinctive mustache with long and upward-curled ends, resembling the handlebars of a bicycle.', 622.12, GETDATE(), 5),
+	(4, 'Horseshoe mustache', 'A mustache that resembles an upside-down "U" shape, extending downward from the corners of the mouth.', 670.17, GETDATE(), 5),
+	(5, 'Tophat', 'A tall, cylindrical hat with a flat crown and a narrow brim.', 523.81, GETDATE(), 5),
+	(5, 'Cowboy Hat', 'A wide-brimmed hat with a tall, creased crown.', 727.47, GETDATE(), 5),
+	(5, 'Newsboy Cap', 'A flat cap with a round, paneled crown and a small, stiff brim that curves slightly at the front.', 739.94, GETDATE(), 5),
+	(6, 'Leash', 'Leash for walking your rock in selected colours.', 696.27, GETDATE(), 5),
+	(7, 'Wellington boots', 'Footwear for outdoor activities such as gardening, farming, hiking, and festivals.', 286.38, GETDATE(), 5),
+	(9, 'Sneakers', 'Footwear designed primarily for sports and physical activities but widely used for everyday casual wear', 653.84, GETDATE(), 5),
+	(9, 'Ears', 'Ears available in several sizes and colours.', 632.83, GETDATE(), 5),
+	(9, 'Fancy gloves', 'Gloves for your trip to England.', 261.37, GETDATE(), 5),
+	(9, 'Rock Markers', 'For drawing on your pet rock to customize to your liking.', 837.69, GETDATE(), 5);
 GO
 
-INSERT INTO [dbo].[OrderLines] ([OrderID], [OrderStatusID])
-VALUES 
-    (1, 1),
-    (2, 2),
-    (3, 3),
-    (4, 4),
-    (5, 1),
-    (6, 2),
-    (7, 3),
-    (8, 4),
-    (9, 1),
-    (10, 2),
-    (11, 3),
-    (12, 4),
-    (13, 1),
-    (14, 2),
-    (15, 3),
-    (16, 4),
-    (17, 1),
-    (18, 2),
-    (19, 3),
-    (20, 4);
+INSERT INTO [dbo].[OrderLines] ([InventoryID], [OrderID], [Quantity])
+VALUES
+	(8, 1, 1),
+	(13, 1, 1),
+	(11, 1, 1),
+	(20, 1, 1),
+	(9, 1, 1),
+	(17, 1, 1),
+	(14, 1, 1),
+	(19, 1, 1),
+	(7, 1, 1),
+	(6, 1, 1),
+	(4, 1, 1),
+	(3, 1, 1),
+	(18, 1, 1),
+	(16, 1, 1),
+	(1, 1, 1),
+	(15, 1, 1),
+	(2, 1, 1),
+	(12, 1, 1),
+	(10, 1, 1),
+	(5, 1, 1);
 
 INSERT INTO VAT ([Value], ActiveTimestamp)
 VALUES 
