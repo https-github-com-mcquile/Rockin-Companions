@@ -1,6 +1,6 @@
-Use RockShopDB
-GO
-    
+--liquibase formatted sql
+
+--changeset Josh:1
 CREATE VIEW vTrackOrder
 AS
 SELECT 
@@ -21,5 +21,3 @@ INNER JOIN
     Employees e ON o.EmployeeID = e.EmployeeID
 INNER JOIN 
     OrderStatus os ON o.OrderStatusID = os.OrderStatusID;
-
-GO
