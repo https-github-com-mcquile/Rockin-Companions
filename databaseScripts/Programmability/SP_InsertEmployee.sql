@@ -4,37 +4,34 @@
 CREATE PROCEDURE InsertEmployee (
     @Email VARCHAR(255),
     @CellNumber CHAR(10),
-    @IdentityNumber CHAR(13),
-    @TimeOfRegistration DATETIME
+    @IdentityNumber CHAR(13)
 )
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT ON
 
-	IF @TimeOfRegistration IS NULL
-        SET @TimeOfRegistration = GETDATE();
 
     BEGIN TRY
-        BEGIN TRANSACTION;
+        BEGIN TRANSACTION
 
-        INSERT INTO Employees (Email, CellNumber, IdentityNumber, TimeOfRegistration)
-        VALUES (@Email, @CellNumber, @IdentityNumber, @TimeOfRegistration);
+        INSERT INTO Employees (Email, CellNumber, IdentityNumber)
+        VALUES (@Email, @CellNumber, @IdentityNumber)
 
         COMMIT TRANSACTION;
     END TRY
     BEGIN CATCH
         IF @@TRANCOUNT > 0
-            ROLLBACK TRANSACTION;
+            ROLLBACK TRANSACTION
 
-        DECLARE @ErrorMessage NVARCHAR(4000);
-        DECLARE @ErrorSeverity INT;
-        DECLARE @ErrorState INT;
+        DECLARE @ErrorMessage NVARCHAR(4000)
+        DECLARE @ErrorSeverity INT
+        DECLARE @ErrorState INT
 
         SELECT
             @ErrorMessage = ERROR_MESSAGE(),
             @ErrorSeverity = ERROR_SEVERITY(),
-            @ErrorState = ERROR_STATE();
+            @ErrorState = ERROR_STATE()
 
-        RAISERROR(@ErrorMessage, @ErrorSeverity, @ErrorState);
-    END CATCH;
+        RAISERROR(@ErrorMessage, @ErrorSeverity, @ErrorState)
+    END CATCH
 END;
