@@ -1,6 +1,6 @@
-USE RockShopDB
-GO
-	
+--liquibase formatted sql
+
+--changeset Michiel:1
 CREATE PROCEDURE InsertEmployee (
     @Email VARCHAR(255),
     @CellNumber CHAR(10),
@@ -38,4 +38,3 @@ BEGIN
         RAISERROR(@ErrorMessage, @ErrorSeverity, @ErrorState);
     END CATCH;
 END;
-GO
