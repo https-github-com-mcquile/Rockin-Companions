@@ -1,0 +1,28 @@
+name: Deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+      changelogFileName:
+        description: "Changelog file name"
+        type: string
+        required: true
+
+jobs:
+  Deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    
+    steps:
+      -name: Checkout Code
+       uses: actions/checkout@v2
+
+      -name: Liquibase Update
+       uses: liquibase/liquibase-github-action@v2
+       with:
+         operation: 'update'
+         changeLogFile:  ${{ inputs.changelogFileName }}
+         username: ${{ secrets.USERNAME }}
+         password: ${{ secrets.PASSWORD }}
+         url: ${{ secrets.DATABASEURL }}
+    
