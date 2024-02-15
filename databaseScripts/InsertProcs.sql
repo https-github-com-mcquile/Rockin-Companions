@@ -4,21 +4,17 @@ GO
 CREATE PROCEDURE InsertEmployee (
     @Email VARCHAR(255),
     @CellNumber CHAR(10),
-    @IdentityNumber CHAR(13),
-    @TimeOfRegistration DATETIME
+    @IdentityNumber CHAR(13)
 )
 AS
 BEGIN
     SET NOCOUNT ON;
 
-	IF @TimeOfRegistration IS NULL
-        SET @TimeOfRegistration = GETDATE();
-
     BEGIN TRY
         BEGIN TRANSACTION;
 
-        INSERT INTO Employees (Email, CellNumber, IdentityNumber, TimeOfRegistration)
-        VALUES (@Email, @CellNumber, @IdentityNumber, @TimeOfRegistration);
+        INSERT INTO Employees (Email, CellNumber, IdentityNumber)
+        VALUES (@Email, @CellNumber, @IdentityNumber);
 
         COMMIT TRANSACTION;
     END TRY
@@ -74,25 +70,21 @@ BEGIN
     END CATCH;
 END;
 GO
-	
+
 CREATE PROCEDURE [dbo].[InsertOrder] (
     @CustomerID INT,
     @EmployeeID INT,
-    @OrderStatusID INT,
-    @PlacedDate DATETIME
+    @OrderStatusID INT
 )
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    IF @PlacedDate IS NULL
-        SET @PlacedDate = GETDATE();
-
     BEGIN TRY
         BEGIN TRANSACTION;
 
-        INSERT INTO [dbo].[Orders] ([CustomerID], [EmployeeID], [OrderStatusID], [PlacedDate])
-        VALUES (@CustomerID, @EmployeeID, @OrderStatusID, @PlacedDate);
+        INSERT INTO [dbo].[Orders] ([CustomerID], [EmployeeID], [OrderStatusID])
+        VALUES (@CustomerID, @EmployeeID, @OrderStatusID);
 
         COMMIT TRANSACTION;
     END TRY
