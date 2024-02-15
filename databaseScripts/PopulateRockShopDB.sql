@@ -89,10 +89,10 @@ VALUES
 	(8, 6, 'House'),
 	(3, 11, 'Work'),
 	(3, 1, 'House'),
-	(12, 17, 'Girl friends house'),
+	(12, 17, 'Girlfriends house'),
 	(8, 12, 'Home'),
 	(17, 5, 'Home'),
-	(18, 6, 'ex girl firends house'),
+	(18, 6, 'ex girlfriends house'),
 	(1, 7, 'Work'),
 	(1, 13, 'Work'),
 	(6, 13, 'Home');
