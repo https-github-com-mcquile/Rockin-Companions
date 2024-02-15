@@ -1,6 +1,6 @@
-USE RockShopDB
-GO
-	
+--liquibase formatted sql
+
+--changeset Kay:1
 CREATE PROCEDURE [dbo].[InsertOrder] (
     @CustomerID INT,
     @EmployeeID INT,
@@ -38,4 +38,3 @@ BEGIN
         RAISERROR(@ErrorMessage, @ErrorSeverity, @ErrorState);
     END CATCH;
 END;
-GO
