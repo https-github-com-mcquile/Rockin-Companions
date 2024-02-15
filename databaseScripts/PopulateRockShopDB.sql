@@ -1,5 +1,6 @@
 USE RockShopDB
-
+GO
+	
 INSERT INTO [dbo].[Addresses] ([AddressName], [Location])
 VALUES 
     ('123 Main St', geography::Point(47.1234, -122.3456, 4326)),

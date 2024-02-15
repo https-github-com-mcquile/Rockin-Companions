@@ -1,3 +1,6 @@
+USE RockShopDB
+GO
+	
 CREATE PROCEDURE InsertEmployee (
     @Email VARCHAR(255),
     @CellNumber CHAR(10),
@@ -70,7 +73,8 @@ BEGIN
         RAISERROR(@ErrorMessage, @ErrorSeverity, @ErrorState);
     END CATCH;
 END;
-
+GO
+	
 CREATE PROCEDURE [dbo].[InsertOrder] (
     @CustomerID INT,
     @EmployeeID INT,

@@ -1,5 +1,6 @@
 Use RockShopDB
-
+GO
+    
 CREATE VIEW vTrackOrder
 AS
 SELECT 
