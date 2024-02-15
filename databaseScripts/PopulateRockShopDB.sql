@@ -1,6 +1,6 @@
-USE RockShopDB
-GO
-	
+--liquibase formatted sql
+
+--changeset michieldekock:1
 INSERT INTO [dbo].[Addresses] ([AddressName], [Location])
 VALUES 
     ('123 Main St', geography::Point(47.1234, -122.3456, 4326)),
@@ -23,8 +23,8 @@ VALUES
     ('150 Pine St', geography::Point(47.4567, -122.9012, 4326)),
     ('160 Maple Ln', geography::Point(47.7890, -122.7890, 4326)),
     ('170 Elm Blvd', geography::Point(47.2345, -122.6789, 4326));
-GO
 
+--changeset michieldekock:2
 INSERT INTO [dbo].[InventoryType] ([Description])
 VALUES 
     ('Rock'),
@@ -41,16 +41,16 @@ VALUES
     ('Misc'),
 	('Mouth'),
     ('Paint');
-GO
 
+--changeset michieldekock:3
 INSERT INTO [dbo].[OrderStatus] ([Description])
 VALUES 
     ('Pending'),
     ('Processing'),
     ('Shipped'),
     ('Delivered');
-GO
 
+--changeset michieldekock:4
 INSERT INTO [dbo].[Customers] ([FirstName], [LastName], [Email], [CellNumber])
 VALUES 
     ('John', 'Doe', 'john.doe@example.com', '1234567890'),
@@ -73,8 +73,8 @@ VALUES
     ('Ashley', 'Hall', 'ashley.hall@example.com', '8529637410'),
     ('Justin', 'Adams', 'justin.adams@example.com', '7531592640'),
     ('Amanda', 'Nelson', 'amanda.nelson@example.com', '3216549870');
-GO
 
+--changeset michieldekock:5
 INSERT INTO [dbo].[CustomersAddresses] ([AddressID], [CustomerID], [PersonalisedHomeAddress])
 VALUES 
     (6, 4, 'Home'),
@@ -97,8 +97,8 @@ VALUES
 	(1, 7, 'Work'),
 	(1, 13, 'Work'),
 	(6, 13, 'Home');
-GO
 
+--changeset michieldekock:6
 INSERT INTO [dbo].[Employees] ([Email], [CellNumber], [IdentityNumber], [TimeOfRegistration])
 VALUES 
 	('samanthajohnson2345@gmail.com', '9876543211', '0301016781181', GETDATE()),
@@ -121,8 +121,8 @@ VALUES
 	('mikebrown789@hotmail.com', '9876543217', '0301019602087', GETDATE()),
 	('mikebrown789@hotmail.com', '9876543218', '0301018145088', GETDATE()),
 	('sarahsmith5678@yahoo.com', '9876543219', '0301016741185', GETDATE());
-GO
 
+--changeset michieldekock:7
 INSERT INTO [dbo].[Orders] ([CustomerID], [EmployeeID], [OrderStatusID], [PlacedDate])
 VALUES
 	(13, 1, 4, GETDATE()),
@@ -145,8 +145,8 @@ VALUES
 	(3, 9, 1, GETDATE()),
 	(15, 8, 3, GETDATE()),
 	(7, 4, 3, GETDATE());
-Go
 
+--changeset michieldekock:8
 INSERT INTO [dbo].[Inventory] ([InventoryTypeID], [Title], [Description], [price], [ActiveTimestamp], [QuantityOnHand])
 VALUES 
     (1, 'Dwayn Rock', 'Dwayne "the PETrock" Johnson. Sudden intense smoulder.', 771.89, GETDATE(), 5),
@@ -170,8 +170,8 @@ VALUES
 	(9, 'Fancy gloves', 'Gloves for your trip to England.', 261.37, GETDATE(), 5),
 	(9, 'Rock Markers', 'For drawing on your pet rock to customize to your liking.', 837.69, GETDATE(), 5),
 	(12, 'Medkit', 'Patch all booboos with this quick drying cement mixture.', 49.99, GETDATE(), 5);
-GO
 
+--changeset michieldekock:9
 INSERT INTO [dbo].[OrderLines] ([InventoryID], [OrderID], [Quantity])
 VALUES
 	(8, 1, 1),
@@ -195,9 +195,9 @@ VALUES
 	(10, 1, 1),
 	(5, 19, 1);
 
+--changeset michieldekock:10
 INSERT INTO VAT ([Value], ActiveTimestamp)
 VALUES 
 	(0.14, '2014-05-14 00:00:00.000'),
 	(0.15, '2018-02-18 12:00:00.000'),
 	(0.01, '2024-02-12 22:41:54.490');
-GO
