@@ -17,7 +17,7 @@ BEGIN
         INSERT INTO Employees (Email, CellNumber, IdentityNumber)
         VALUES (@Email, @CellNumber, @IdentityNumber)
 
-        COMMIT TRANSACTION;
+        COMMIT TRANSACTION
     END TRY
     BEGIN CATCH
         IF @@TRANCOUNT > 0
