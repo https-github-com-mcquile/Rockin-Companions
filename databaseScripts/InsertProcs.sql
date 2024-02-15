@@ -1,3 +1,6 @@
+USE RockShopDB
+GO
+	
 CREATE PROCEDURE InsertEmployee (
     @Email VARCHAR(255),
     @CellNumber CHAR(10),
