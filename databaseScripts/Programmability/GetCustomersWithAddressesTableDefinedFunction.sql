@@ -1,6 +1,6 @@
-USE RockShopDB;
-GO
+--liquibase formatted sql
 
+--changeset McQuile:1
 CREATE FUNCTION dbo.GetCustomersWithAddresses()
 RETURNS TABLE
 AS
