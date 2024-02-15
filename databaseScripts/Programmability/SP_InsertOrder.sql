@@ -4,37 +4,34 @@
 CREATE PROCEDURE [dbo].[InsertOrder] (
     @CustomerID INT,
     @EmployeeID INT,
-    @OrderStatusID INT,
-    @PlacedDate DATETIME
+    @OrderStatusID INT
 )
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT ON
 
-    IF @PlacedDate IS NULL
-        SET @PlacedDate = GETDATE();
 
     BEGIN TRY
-        BEGIN TRANSACTION;
+        BEGIN TRANSACTION
 
-        INSERT INTO [dbo].[Orders] ([CustomerID], [EmployeeID], [OrderStatusID], [PlacedDate])
-        VALUES (@CustomerID, @EmployeeID, @OrderStatusID, @PlacedDate);
+        INSERT INTO [dbo].[Orders] ([CustomerID], [EmployeeID], [OrderStatusID])
+        VALUES (@CustomerID, @EmployeeID, @OrderStatusID)
 
-        COMMIT TRANSACTION;
+        COMMIT TRANSACTION
     END TRY
     BEGIN CATCH
         IF @@TRANCOUNT > 0
-            ROLLBACK TRANSACTION;
+            ROLLBACK TRANSACTION
 
-        DECLARE @ErrorMessage NVARCHAR(4000);
-        DECLARE @ErrorSeverity INT;
-        DECLARE @ErrorState INT;
+        DECLARE @ErrorMessage NVARCHAR(4000)
+        DECLARE @ErrorSeverity INT
+        DECLARE @ErrorState INT
 
         SELECT
             @ErrorMessage = ERROR_MESSAGE(),
             @ErrorSeverity = ERROR_SEVERITY(),
-            @ErrorState = ERROR_STATE();
+            @ErrorState = ERROR_STATE()
 
-        RAISERROR(@ErrorMessage, @ErrorSeverity, @ErrorState);
-    END CATCH;
+        RAISERROR(@ErrorMessage, @ErrorSeverity, @ErrorState)
+    END CATCH
 END;
