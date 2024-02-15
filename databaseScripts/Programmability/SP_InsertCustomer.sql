@@ -1,6 +1,6 @@
-USE RockShopDB
-GO
+--liquibase formatted sql
 
+--changeset Michiel:1
 CREATE PROCEDURE [dbo].[InsertCustomer]
     @FirstName VARCHAR(120),
     @LastName VARCHAR(120),
@@ -34,4 +34,3 @@ BEGIN
         RAISERROR(@ErrorMessage, @ErrorSeverity, @ErrorState);
     END CATCH;
 END;
-GO
