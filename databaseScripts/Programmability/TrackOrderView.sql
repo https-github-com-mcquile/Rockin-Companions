@@ -20,4 +20,4 @@ INNER JOIN
 INNER JOIN 
     Employees e ON o.EmployeeID = e.EmployeeID
 INNER JOIN 
-    OrderStatus os ON o.OrderStatusID = os.OrderStatusID;
+    OrderStatus os ON o.OrderStatusID = os.OrderStatusID
