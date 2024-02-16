@@ -56,7 +56,7 @@ resource "aws_db_instance" "mssql" {
   publicly_accessible  = true
   skip_final_snapshot  = true
   multi_az             = false
-  vpc_security_group_ids = [aws_security_group.mssql_sg.id]  # Assuming the security group is defined as per previous instructions
+  vpc_security_group_ids = [aws_security_group.mssql_sg.id]
 }
 
 resource "aws_db_subnet_group" "main" {
