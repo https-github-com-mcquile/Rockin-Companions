@@ -25,7 +25,7 @@ When starting up Microsoft SQL Management Studio you will be prompted with the f
 
 ![image](https://github.com/https-github-com-mcquile/Rockin-Companions/assets/101985056/739dd292-3d07-4e2c-993c-2ba541839e1d)
 
-Server name: Here you will put the JDBC URL to your database then your port number separated by a comma  
+Server name: Here you will put the URL to your database then your port number separated by a comma  
 Login: Here you put your username for the DB  
 Password: The super secret password
 
